@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MegaTech AHK - Marketplace Laptop & Aksesoris</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Menggunakan Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.png">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="MegaTech AHK Logo">
+            </a>
+            <div class="header-icons">
+                <button id="cart-btn"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter Kategori -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="all">Semua</button>
+            <button class="filter-btn" data-category="laptop">Laptop</button>
+            <button class="filter-btn" data-category="mouse">Mouse</button>
+            <button class="filter-btn" data-category="keyboard">Keyboard</button>
+            <button class="filter-btn" data-category="headset">Headset</button>
+        </div>
+
+        <!-- Grid Produk -->
+        <section id="product-grid" class="product-grid">
+            <!-- Produk akan dimuat oleh JavaScript di sini -->
+        </section>
+    </main>
+
+    <!-- Modal Detail Produk -->
+    <div id="product-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="product-detail">
+                <img id="detail-image" src="" alt="">
+                <div class="detail-info">
+                    <h2 id="detail-name"></h2>
+                    <p id="detail-price"></p>
+                    <p id="detail-description"></p>
+                    <button id="add-to-cart-detail" class="btn btn-primary">Tambah ke Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Keranjang -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Keranjang Anda</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div id="cart-items" class="cart-items">
+                <!-- Item keranjang akan dimuat oleh JavaScript di sini -->
+            </div>
+            <div class="cart-footer">
+                <h3>Total: <span id="cart-total">Rp 0</span></h3>
+                <button class="btn btn-primary">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Bagian Brand & Copyright -->
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="assets/logo.png" alt="MegaTech AHK Logo">
+                    </a>
+                    <p>&copy; 2025 MegaTech AHK. All Rights Reserved.</p>
+                </div>
+
+                <!-- Bagian Kontak -->
+                <div class="footer-contact">
+                    <h4>Hubungi Kami</h4>
+                    <p><i class="fas fa-envelope"></i> <a
+                            href="mailto:afnanhanif.it@gmail.com">afnanhanif.it@gmail.com</a></p>
+                    <p><i class="fas fa-phone"></i> <a href="https://wa.me/6287782206727">+62 877-8220-6727</a></p>
+                </div>
+
+                <!-- Bagian Sosial Media -->
+                <div class="footer-social">
+                    <h4>Ikuti Kami</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/afnanhk15" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@afnanhk_" target="_blank" aria-label="TikTok"><i
+                                class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
