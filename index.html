@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MegaTech AHK - Marketplace Laptop & Aksesoris</title>
+    <title>MegaTech AHK - Marketplace Laptop & Aksesoris Terlaris</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Menggunakan Font Awesome untuk ikon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Favicon -->
     <link rel="icon" href="assets/favicon.png">
 
@@ -18,70 +17,188 @@
 </head>
 
 <body>
-
     <!-- Header -->
-    <header class="main-header">
+    <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="MegaTech AHK Logo">
-            </a>
-            <div class="header-icons">
-                <button id="cart-btn"><i class="fas fa-shopping-cart"></i><span id="cart-count">0</span></button>
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html" class="logo">
+                        <img src="assets/logo.png" alt="MegaTech AHK Logo">
+                    </a>
+                </div>
+                <nav class="nav">
+                    <a href="#" class="nav-link active" data-category="all">Semua</a>
+                    <a href="#" class="nav-link" data-category="laptop">Laptop</a>
+                    <a href="#" class="nav-link" data-category="mouse">Mouse</a>
+                    <a href="#" class="nav-link" data-category="keyboard">Keyboard</a>
+                    <a href="#" class="nav-link" data-category="headset">Headset</a>
+                </nav>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Cari produk...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container">
-        <!-- Filter Kategori -->
-        <div class="category-filter">
-            <button class="filter-btn active" data-category="all">Semua</button>
-            <button class="filter-btn" data-category="laptop">Laptop</button>
-            <button class="filter-btn" data-category="mouse">Mouse</button>
-            <button class="filter-btn" data-category="keyboard">Keyboard</button>
-            <button class="filter-btn" data-category="headset">Headset</button>
+    <main class="main">
+        <div class="container">
+            <!-- Products Section -->
+            <section class="products-section">
+                <h2 class="section-title">Produk Terbaru & Terlaris</h2>
+                <div class="products-grid" id="productsGrid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+            </section>
         </div>
-
-        <!-- Grid Produk -->
-        <section id="product-grid" class="product-grid">
-            <!-- Produk akan dimuat oleh JavaScript di sini -->
-        </section>
     </main>
 
-    <!-- Modal Detail Produk -->
-    <div id="product-detail-modal" class="modal">
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <button class="close-modal" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
             <div class="product-detail">
-                <img id="detail-image" src="" alt="">
-                <div class="detail-info">
-                    <h2 id="detail-name"></h2>
-                    <p id="detail-price"></p>
-                    <p id="detail-description"></p>
-                    <button id="add-to-cart-detail" class="btn btn-primary">Tambah ke Keranjang</button>
+                <div class="product-detail-image">
+                    <img id="modalImage" src="" alt="">
+                </div>
+                <div class="product-detail-info">
+                    <h2 id="modalTitle"></h2>
+                    <p class="product-category" id="modalCategory"></p>
+                    <p class="product-price" id="modalPrice"></p>
+                    <p class="product-description" id="modalDescription"></p>
+                    <div class="product-options">
+                        <div class="quantity-selector">
+                            <label>Jumlah:</label>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" id="decreaseQty">-</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button class="quantity-btn" id="increaseQty">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="add-to-cart-btn" id="addToCartModal">
+                        <i class="fas fa-cart-plus"></i> Tambah ke Keranjang
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Sidebar Keranjang -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h2>Keranjang Anda</h2>
-                <span class="close-btn">&times;</span>
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Keranjang Belanja</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">Rp 0</span>
             </div>
-            <div id="cart-items" class="cart-items">
-                <!-- Item keranjang akan dimuat oleh JavaScript di sini -->
+            <button class="checkout-btn">
+                <i class="fas fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Page -->
+    <div class="checkout-page" id="checkoutPage">
+        <div class="container">
+            <div class="checkout-header">
+                <button class="back-to-cart" id="backToCart">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Keranjang
+                </button>
+                <h1>Checkout</h1>
             </div>
-            <div class="cart-footer">
-                <h3>Total: <span id="cart-total">Rp 0</span></h3>
-                <button class="btn btn-primary">Checkout</button>
+
+            <div class="checkout-content">
+                <div class="checkout-form">
+                    <h2>Informasi Pembeli</h2>
+                    <form id="checkoutForm">
+                        <div class="form-group">
+                            <label for="fullName">Nama Lengkap</label>
+                            <input type="text" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Nomor Telepon</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Alamat Lengkap</label>
+                            <textarea id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Kota</label>
+                            <input type="text" id="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalCode">Kode Pos</label>
+                            <input type="text" id="postalCode" required>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="order-summary">
+                    <h2>Ringkasan Pesanan</h2>
+                    <div class="order-items" id="orderItems">
+                        <!-- Order items will be dynamically loaded here -->
+                    </div>
+                    <div class="order-totals">
+                        <div class="order-total">
+                            <span>Subtotal:</span>
+                            <span id="orderSubtotal">Rp 0</span>
+                        </div>
+                        <div class="order-total">
+                            <span>Ongkos Kirim:</span>
+                            <span id="shippingCost">Rp 15.000</span>
+                        </div>
+                        <div class="order-total grand-total">
+                            <span>Total:</span>
+                            <span id="orderTotal">Rp 0</span>
+                        </div>
+                    </div>
+                    <button class="place-order-btn" id="placeOrderBtn">
+                        <i class="fas fa-check-circle"></i> Konfirmasi Pesanan
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Pesanan Berhasil!</h2>
+            <p>Terima kasih atas pesanan Anda. Kami akan menghubungi Anda segera untuk konfirmasi pembayaran.</p>
+            <button class="continue-shopping-btn" id="continueShoppingBtn">
+                <i class="fas fa-shopping-bag"></i> Lanjutkan Belanja
+            </button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
 
     <footer class="main-footer">
         <div class="container">
@@ -116,6 +233,7 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
